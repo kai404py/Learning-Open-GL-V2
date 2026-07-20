@@ -1,3 +1,5 @@
+#include <cstdlib>
+#include <ctime>
 #include "HelloGL.h"
 #include "MeshLoader.h"
 
