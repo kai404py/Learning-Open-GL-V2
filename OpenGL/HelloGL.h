@@ -4,9 +4,9 @@
 #include <gl/GLU.h>
 #include "GL/freeglut.h"
 #include "GLUTCallbacks.h"
+#include "Structures.h"
 
 #define REFRESHRATE 2
-#include "Structures.h"
 
 class HelloGL
 {
@@ -28,5 +28,10 @@ private:
 	float rotation2;
 	float rotation3;
 	Camera* camera;
-
+	
+	static Vertex vertices[];
+	static Color colors[];
+	static Vertex indexedVertices[];
+	static Color indexedColors[];
+	static GLushort indices[];
 };
