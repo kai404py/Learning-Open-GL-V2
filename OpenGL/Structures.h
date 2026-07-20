@@ -28,6 +28,26 @@ struct TexCoord
 	GLfloat u, v;
 };
 
+struct Vector4
+{
+	GLfloat x, y, z, w;
+};
+
+struct Lighting
+{
+	Vector4 Ambient;
+	Vector4 Diffuse;
+	Vector4 Specular;
+};
+
+struct Material
+{
+	Vector4 Ambient;
+	Vector4 Diffuse;
+	Vector4 Specular;
+	GLfloat Shininess;
+};
+
 struct Mesh
 {
 	Vertex* Vertices;
