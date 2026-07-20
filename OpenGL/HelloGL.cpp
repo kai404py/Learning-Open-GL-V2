@@ -50,6 +50,39 @@ void HelloGL::Display()
 	glutSwapBuffers();
 }
 
+void HelloGL::DrawCube()
+{
+	glBegin(GL_TRIANGLES);
+		// face v0-v1-v2
+		glColor3f(1, 1, 1);
+		glVertex3f(1, 1, 1);
+		glColor3f(1, 1, 0);
+		glVertex3f(-1, 1, 1);
+		glColor3f(1, 0, 0);
+		glVertex3f(-1, -1, 1);
+		// face v2-v3-v0
+		glColor3f(1, 0, 0);
+		glVertex3f(-1, -1, 1);
+		glColor3f(1, 0, 1);
+		glVertex3f(1, -1, 1);
+		glColor3f(1, 1, 1);
+		glVertex3f(1, 1, 1);
+		// face v0-v3-v4
+		glColor3f(1, 1, 1);
+		glVertex3f(1, 1, 1);
+		glColor3f(1, 0, 1);
+		glVertex3f(1, -1, 1);
+		glColor3f(0, 0, 1);
+		glVertex3f(1, -1, -1);
+		// face v4-v5-v0
+		glColor3f(0, 0, 1);
+		glVertex3f(1, -1, -1);
+		glColor3f(0, 1, 1);
+		glVertex3f(1, 1, -1);
+		glColor3f(1, 1, 1);
+		glVertex3f(1, 1, 1);
+}
+
 void HelloGL::DrawPolygon()
 {
 	// Self notes
