@@ -28,8 +28,8 @@ void HelloGL::InitObjects()
 void HelloGL::InitLighting()
 {
 	_lightPosition = new Vector4();
-	_lightPosition->x = 0.0;
-	_lightPosition->y = 0.0;
+	_lightPosition->x = -1.0;
+	_lightPosition->y = 1.0;
 	_lightPosition->z = 1.0;
 	_lightPosition->w = 0.0;
 
@@ -117,7 +117,7 @@ void HelloGL::Display()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	for (int i = 0; i < 1000; i++)
+	for (int i = 0; i < 100; i++)
 	{
 		if (objects[i] != nullptr)
 		{

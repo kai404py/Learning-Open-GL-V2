@@ -27,6 +27,7 @@
 *.lib
 *.vs/
 Debug/
+Release/
 
 # Executables
 *.exe
