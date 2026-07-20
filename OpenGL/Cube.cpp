@@ -7,7 +7,7 @@ Cube::Cube(Mesh* mesh, float x, float y, float z) : SceneObject(mesh)
 	_position.y = y;
 	_position.z = z;
 
-	_rotation = rand() % 360;
+	_rotation = (GLfloat)(rand() % 360);
 
 	_rotationSpeed = ((rand() % 19) + 2) / 10.0f;
 
@@ -74,7 +74,7 @@ void Cube::Update()
 		if (_axisX == 0 && _axisY == 0 && _axisZ == 0)
 			_axisY = 1.0f;
 
-		_rotation = rand() % 360;
+		_rotation = (GLfloat)(rand() % 360);
 	}
 }
 

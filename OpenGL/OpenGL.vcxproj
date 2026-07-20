@@ -123,20 +123,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\Downloads\OneDrive_1_20-07-2026\MeshLoader.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="GLUTCallbacks.h" />
     <ClInclude Include="HelloGL.h" />
+    <ClInclude Include="MeshLoader.h" />
     <ClInclude Include="OBJ.h" />
+    <ClInclude Include="Pyramid.h" />
+    <ClInclude Include="SceneObject.h" />
     <ClInclude Include="Structures.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Downloads\OneDrive_1_20-07-2026\MeshLoader.cpp" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="GLUTCallbacks.cpp" />
     <ClCompile Include="HelloGL.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MeshLoader.cpp" />
     <ClCompile Include="OBJ.cpp" />
+    <ClCompile Include="Pyramid.cpp" />
+    <ClCompile Include="SceneObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Cube.txt" />

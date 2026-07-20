@@ -78,7 +78,7 @@ void HelloGL::InitGL(int argc, char* argv[])
 
 HelloGL::HelloGL(int argc, char* argv[])
 {
-	srand(time(NULL));
+	srand((unsigned int)time(NULL));
 
 	InitGL(argc, argv);
 	InitObjects();
