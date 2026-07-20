@@ -39,4 +39,5 @@ namespace GLUTCallbacks
 		glutTimerFunc(preferredRefresh - updateTime, Timer, preferredRefresh);
 
 	}
+
 }

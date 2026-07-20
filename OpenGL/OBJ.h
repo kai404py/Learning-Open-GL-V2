@@ -6,8 +6,11 @@
 #include "Structures.h"
 #include <iostream>
 #include <fstream>
+#include <vector>
+#include <string>
+#include <sstream>
 
-class Cube
+class OBJ
 {
 private:
 	static Vertex* indexedVertices;
@@ -26,8 +29,8 @@ private:
 	GLfloat _axisZ;
 
 public:
-	Cube(float x, float y, float z);
-	~Cube();
+	OBJ(float x, float y, float z);
+	~OBJ();
 	
 	static bool Load(char* path);
 

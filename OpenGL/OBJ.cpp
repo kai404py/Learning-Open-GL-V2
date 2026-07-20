@@ -1,17 +1,17 @@
-#include "Cube.h"
+#include "OBJ.h"
 
 
-// Definitions for static members declared in Cube.h
+// Definitions for static members declared in OBJ.h
 
-Vertex* Cube::indexedVertices = nullptr;
-Color* Cube::indexedColors = nullptr;
-GLushort* Cube::indices = nullptr;
+Vertex* OBJ::indexedVertices = nullptr;
+Color* OBJ::indexedColors = nullptr;
+GLushort* OBJ::indices = nullptr;
 
-int Cube::numColors = 0;
-int Cube::numVertices = 0;
-int Cube::numIndices = 0;
+int OBJ::numColors = 0;
+int OBJ::numVertices = 0;
+int OBJ::numIndices = 0;
 
-Cube::Cube(float x, float y, float z)
+OBJ::OBJ(float x, float y, float z)
 {
 	_position.x = x;
 	_position.y = y;
@@ -34,7 +34,7 @@ Cube::Cube(float x, float y, float z)
 		_axisY = 1.0f;
 }
 
-void Cube::Draw()
+void OBJ::Draw()
 {
 	glPushMatrix();
 
@@ -58,42 +58,102 @@ void Cube::Draw()
 	glPopMatrix();
 }
 
-bool Cube::Load(char* path)
+bool OBJ::Load(char* path)
 {
 	std::ifstream inFile;
 	inFile.open(path);
+
 	if (!inFile.good())
 	{
-		std::cerr << "Can't open text file " << path << std::endl;
+		std::cerr << "Can't open OBJ file " << path << std::endl;
 		return false;
 	}
-	inFile >> numVertices;
+
+	std::vector<Vertex> vertices;
+	std::vector<GLushort> objIndices;
+
+	std::string line;
+
+	while (getline(inFile, line))
+	{
+		std::stringstream ss(line);
+		std::string type;
+
+		ss >> type;
+
+
+		// Vertex position
+		if (type == "v")
+		{
+			Vertex vertex;
+
+			ss >> vertex.x;
+			ss >> vertex.y;
+			ss >> vertex.z;
+
+			vertices.push_back(vertex);
+		}
+
+
+		// Triangle face
+		else if (type == "f")
+		{
+			GLushort a, b, c;
+
+			ss >> a >> b >> c;
+
+			// OBJ starts at 1, OpenGL starts at 0
+			objIndices.push_back(a - 1);
+			objIndices.push_back(b - 1);
+			objIndices.push_back(c - 1);
+		}
+	}
+
+
+	// Copy vertices into static array
+
+	numVertices = vertices.size();
+
 	indexedVertices = new Vertex[numVertices];
+
 	for (int i = 0; i < numVertices; i++)
 	{
-		//TODO Use inFile to populate the indexedVertices array 
-		inFile >> indexedVertices[i].x >> indexedVertices[i].y >> indexedVertices[i].z;
+		indexedVertices[i] = vertices[i];
 	}
 
-	inFile >> numColors;
+
+	// Create default colours
+
+	numColors = numVertices;
+
 	indexedColors = new Color[numColors];
+
 	for (int i = 0; i < numColors; i++)
 	{
-		inFile >> indexedColors[i].r >> indexedColors[i].g >> indexedColors[i].b;
+		indexedColors[i].r = 1.0f;
+		indexedColors[i].g = 1.0f;
+		indexedColors[i].b = 1.0f;
 	}
 
-	inFile >> numIndices;
+
+	// Copy indices
+
+	numIndices = objIndices.size();
+
 	indices = new GLushort[numIndices];
+
 	for (int i = 0; i < numIndices; i++)
 	{
-		inFile >> indices[i];
+		indices[i] = objIndices[i];
 	}
-	
+
+
 	inFile.close();
+
 	return true;
 }
 
-void Cube::Update()
+void OBJ::Update()
 {
 	_rotation += _rotationSpeed;
 	_position.z += _moveSpeed;
@@ -122,6 +182,6 @@ void Cube::Update()
 	}
 }
 
-Cube::~Cube(void)
+OBJ::~OBJ(void)
 {
 }

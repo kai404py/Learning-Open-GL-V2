@@ -6,6 +6,8 @@
 #include "GLUTCallbacks.h"
 #include "Structures.h"
 #include "Cube.h"
+#include "OBJ.h"
+#include <cmath>
 
 #define REFRESHRATE 2
 
@@ -17,6 +19,14 @@ public:
 	void Update();
 	void Keyboard(unsigned char key, int x, int y);
 	void SpecialKeyboard(int key, int x, int y);
+	void InitObjects();
+	void InitGL(int argc, char* argv[]);
+	float cameraAngle;
+	float cameraSpeed;
+	float cameraRadius;
+	int lastMouseX;
+	int lastMouseY;
+	bool mousePressed = false;
 
 	~HelloGL(void);
 
@@ -25,5 +35,6 @@ private:
 	float rotation2;
 	float rotation3;
 	Camera* camera;
-	Cube* cube;
+	Cube* cube[200] = {};
+	OBJ* obj[200] = {};
 };
