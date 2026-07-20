@@ -34,3 +34,7 @@ void Pyramid::Draw()
 void Pyramid::Update()
 {
 }
+
+Pyramid::~Pyramid()
+{
+}
