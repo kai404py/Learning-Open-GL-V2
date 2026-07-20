@@ -4,22 +4,22 @@
 void HelloGL::InitObjects()
 {
 	Mesh* cubeMesh = MeshLoader::Load((char*)"cube.txt");
-	OBJ::Load((char*)"teapot.obj");
+	Mesh* pyramidMesh = MeshLoader::Load((char*)"pyramid.txt");
 
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < 500; i++)
 	{
-		float x = ((rand() % 400) / 10.0f) - 20.0f;
-		float y = ((rand() % 200) / 10.0f) - 10.0f;
-		float z = -(rand() % 1000) / 10.0f;
+		objects[i] = new Cube(cubeMesh,
+			((rand() % 400) / 10.0f) - 20.0f,
+			((rand() % 200) / 10.0f) - 10.0f,
+			-(rand() % 1000) / 10.0f);
+	}
 
-		if (i % 2 == 0)
-		{
-			cube[i] = new Cube(cubeMesh, x, y, z);
-		}
-		else
-		{
-			obj[i] = new OBJ(x, y, z);
-		}
+	for (int i = 500; i < 1000; i++)
+	{
+		objects[i] = new Pyramid(pyramidMesh,
+			((rand() % 400) / 10.0f) - 20.0f,
+			((rand() % 200) / 10.0f) - 10.0f,
+			-(rand() % 1000) / 10.0f);
 	}
 }
 
@@ -88,16 +88,11 @@ void HelloGL::Display()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	for (int i = 0; i < 200; i++)
+	for (int i = 0; i < 1000; i++)
 	{
-		if (cube[i] != nullptr)
+		if (objects[i] != nullptr)
 		{
-			cube[i]->Draw();
-		}
-
-		if (obj[i] != nullptr)
-		{
-			obj[i]->Draw();
+			objects[i]->Draw();
 		}
 	}
 
@@ -177,16 +172,11 @@ void HelloGL::Update()
 		camera->up.x, camera->up.y, camera->up.z);
 
 
-	for (int i = 0; i < 200; i++)
+	for (int i = 0; i < 1000; i++)
 	{
-		if (cube[i] != nullptr)
+		if (objects[i] != nullptr)
 		{
-			cube[i]->Update();
-		}
-
-		if (obj[i] != nullptr)
-		{
-			obj[i]->Update();
+			objects[i]->Update();
 		}
 	}
 

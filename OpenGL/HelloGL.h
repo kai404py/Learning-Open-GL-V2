@@ -5,8 +5,9 @@
 #include "GL/freeglut.h"
 #include "GLUTCallbacks.h"
 #include "Structures.h"
+#include "SceneObject.h"
 #include "Cube.h"
-#include "OBJ.h"
+#include "Pyramid.h"
 #include <cmath>
 
 #define REFRESHRATE 2
@@ -35,6 +36,5 @@ private:
 	float rotation2;
 	float rotation3;
 	Camera* camera;
-	Cube* cube[200] = {};
-	OBJ* obj[200] = {};
+	SceneObject* objects[1000] = {};
 };

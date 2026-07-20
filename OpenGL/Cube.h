@@ -1,16 +1,9 @@
 #pragma once
-#include <Windows.h>
-#include <gl/GL.h>
-#include <gl/GLU.h>
-#include "GL/freeglut.h"
-#include "Structures.h"
-#include <iostream>
-#include <fstream>
+#include "SceneObject.h"
 
-class Cube
+class Cube : public SceneObject
 {
 private:
-	Mesh* _mesh;
 	Vector3 _position;
 
 	GLfloat _rotation;
