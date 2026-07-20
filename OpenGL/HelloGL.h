@@ -19,6 +19,7 @@ public:
 	void Keyboard(unsigned char key, int x, int y);
 	void SpecialKeyboard(int key, int x, int y);
 	void InitObjects();
+	void InitLighting();
 	void InitGL(int argc, char* argv[]);
 	float cameraAngle;
 	float cameraSpeed;
@@ -34,5 +35,7 @@ private:
 	float rotation2;
 	float rotation3;
 	Camera* camera;
+	Vector4* _lightPosition;
+	Lighting* _lightData;
 	SceneObject* objects[1000] = {};
 };

@@ -25,6 +25,29 @@ void HelloGL::InitObjects()
 	}
 }
 
+void HelloGL::InitLighting()
+{
+	_lightPosition = new Vector4();
+	_lightPosition->x = 0.0;
+	_lightPosition->y = 0.0;
+	_lightPosition->z = 1.0;
+	_lightPosition->w = 0.0;
+
+	_lightData = new Lighting();
+	_lightData->Ambient.x = 0.2;
+	_lightData->Ambient.y = 0.2;
+	_lightData->Ambient.z = 0.2;
+	_lightData->Ambient.w = 1.0;
+	_lightData->Diffuse.x = 0.8;
+	_lightData->Diffuse.y = 0.8;
+	_lightData->Diffuse.z = 0.8;
+	_lightData->Diffuse.w = 1.0;
+	_lightData->Specular.x = 0.2;
+	_lightData->Specular.y = 0.2;
+	_lightData->Specular.z = 0.2;
+	_lightData->Specular.w = 1.0;
+}
+
 void HelloGL::InitGL(int argc, char* argv[])
 {
 	rotation1 = 0.0f;
@@ -59,6 +82,8 @@ void HelloGL::InitGL(int argc, char* argv[])
 	glutInitWindowPosition(200, 100);
 	glutCreateWindow("Open GL Resub 1");
 	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
 	glEnable(GL_DEPTH_TEST);
@@ -82,6 +107,7 @@ HelloGL::HelloGL(int argc, char* argv[])
 	srand((unsigned int)time(NULL));
 
 	InitGL(argc, argv);
+	InitLighting();
 	InitObjects();
 
 	glutMainLoop();
@@ -174,6 +200,10 @@ void HelloGL::Update()
 		camera->center.x, camera->center.y, camera->center.z,
 		camera->up.x, camera->up.y, camera->up.z);
 
+	glLightfv(GL_LIGHT0, GL_AMBIENT, &(_lightData->Ambient.x));
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, &(_lightData->Diffuse.x));
+	glLightfv(GL_LIGHT0, GL_SPECULAR, &(_lightData->Specular.x));
+	glLightfv(GL_LIGHT0, GL_POSITION, &(_lightPosition->x));
 
 	for (int i = 0; i < 1000; i++)
 	{
@@ -188,6 +218,7 @@ void HelloGL::Update()
 
 HelloGL::~HelloGL(void)
 {
-	// destry the camera object
 	delete camera;
+	delete _lightPosition;
+	delete _lightData;
 }
