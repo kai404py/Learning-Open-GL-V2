@@ -6,6 +6,7 @@ using namespace std;
 
 Texture2D::Texture2D()
 {
+	_ID = 0;
 }
 
 Texture2D::~Texture2D()

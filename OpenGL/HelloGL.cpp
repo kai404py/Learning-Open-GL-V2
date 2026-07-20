@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <ctime>
+#include <iostream>
 #include "HelloGL.h"
 #include "MeshLoader.h"
 
@@ -9,7 +10,12 @@ void HelloGL::InitObjects()
 	Mesh* pyramidMesh = MeshLoader::Load((char*)"pyramid.txt");
 
 	Texture2D* texture = new Texture2D();
-	texture->Load((char*)"Penguins.raw", 512, 512);
+	if (!texture->Load((char*)"Penguins.raw", 512, 512))
+	{
+		cout << "Failed to load texture" << endl;
+		delete texture;
+		texture = nullptr;
+	}
 
 	for (int i = 0; i < 100; i++)
 	{

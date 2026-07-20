@@ -26,11 +26,6 @@ Cube::Cube(Mesh* mesh, Texture2D* texture, float x, float y, float z) : SceneObj
 
 void Cube::Draw()
 {
-	if (_texture != nullptr)
-	{
-		glBindTexture(GL_TEXTURE_2D, _texture->GetID());
-	}
-
 	glPushMatrix();
 
 	glTranslatef(_position.x, _position.y, _position.z);
@@ -41,17 +36,29 @@ void Cube::Draw()
 		_mesh->Colors != nullptr &&
 		_mesh->Indices != nullptr)
 	{
+		if (_texture != nullptr)
+		{
+			glBindTexture(GL_TEXTURE_2D, _texture->GetID());
+		}
+
 		glEnableClientState(GL_VERTEX_ARRAY);
 		glEnableClientState(GL_COLOR_ARRAY);
-		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
 		glVertexPointer(3, GL_FLOAT, 0, _mesh->Vertices);
 		glColorPointer(3, GL_FLOAT, 0, _mesh->Colors);
-		glTexCoordPointer(2, GL_FLOAT, 0, _mesh->TexCoords);
+
+		if (_mesh->TexCoords != nullptr)
+		{
+			glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+			glTexCoordPointer(2, GL_FLOAT, 0, _mesh->TexCoords);
+		}
 
 		glDrawElements(GL_TRIANGLES, _mesh->IndexCount, GL_UNSIGNED_SHORT, _mesh->Indices);
 
-		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+		if (_mesh->TexCoords != nullptr)
+		{
+			glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+		}
 		glDisableClientState(GL_COLOR_ARRAY);
 		glDisableClientState(GL_VERTEX_ARRAY);
 	}
