@@ -1,137 +1,5 @@
 #include "HelloGL.h"
 
-// Definitions for static members declared in HelloGL.h
-Vertex HelloGL::vertices[] = {
-	{ 1.0f,  1.0f,  1.0f},
-	{-1.0f,  1.0f,  1.0f},
-	{-1.0f, -1.0f,  1.0f},
-
-	{-1.0f, -1.0f,  1.0f},
-	{ 1.0f, -1.0f,  1.0f},
-	{ 1.0f,  1.0f,  1.0f},
-
-	{ 1.0f,  1.0f,  1.0f},
-	{ 1.0f, -1.0f,  1.0f},
-	{ 1.0f, -1.0f, -1.0f},
-
-	{ 1.0f, -1.0f, -1.0f},
-	{ 1.0f,  1.0f, -1.0f},
-	{ 1.0f,  1.0f,  1.0f},
-
-	{ 1.0f,  1.0f,  1.0f},
-	{ 1.0f,  1.0f, -1.0f},
-	{-1.0f,  1.0f, -1.0f},
-
-	{-1.0f,  1.0f, -1.0f},
-	{-1.0f,  1.0f,  1.0f},
-	{ 1.0f,  1.0f,  1.0f},
-
-	{-1.0f,  1.0f,  1.0f},
-	{-1.0f,  1.0f, -1.0f},
-	{-1.0f, -1.0f, -1.0f},
-
-	{-1.0f, -1.0f, -1.0f},
-	{-1.0f, -1.0f,  1.0f},
-	{-1.0f,  1.0f,  1.0f},
-
-	{-1.0f, -1.0f, -1.0f},
-	{ 1.0f, -1.0f, -1.0f},
-	{ 1.0f, -1.0f,  1.0f},
-
-	{ 1.0f, -1.0f,  1.0f},
-	{-1.0f, -1.0f,  1.0f},
-	{-1.0f, -1.0f, -1.0f},
-
-	{ 1.0f, -1.0f, -1.0f},
-	{-1.0f, -1.0f, -1.0f},
-	{-1.0f,  1.0f, -1.0f},
-
-	{-1.0f,  1.0f, -1.0f},
-	{ 1.0f,  1.0f, -1.0f},
-	{ 1.0f, -1.0f, -1.0f}
-};
-
-Color HelloGL::colors[] = {
-	{1.0f, 1.0f, 1.0f},
-	{1.0f, 1.0f, 0.0f},
-	{1.0f, 0.0f, 0.0f},
-
-	{1.0f, 0.0f, 0.0f},
-	{1.0f, 0.0f, 1.0f},
-	{1.0f, 1.0f, 1.0f},
-
-	{1.0f, 1.0f, 1.0f},
-	{1.0f, 0.0f, 1.0f},
-	{0.0f, 0.0f, 1.0f},
-
-	{0.0f, 0.0f, 1.0f},
-	{0.0f, 1.0f, 1.0f},
-	{1.0f, 1.0f, 1.0f},
-
-	{1.0f, 1.0f, 1.0f},
-	{0.0f, 1.0f, 1.0f},
-	{0.0f, 1.0f, 0.0f},
-
-	{0.0f, 1.0f, 0.0f},
-	{1.0f, 1.0f, 0.0f},
-	{1.0f, 1.0f, 1.0f},
-
-	{1.0f, 1.0f, 0.0f},
-	{0.0f, 1.0f, 0.0f},
-	{0.0f, 0.0f, 0.0f},
-
-	{0.0f, 0.0f, 0.0f},
-	{1.0f, 0.0f, 0.0f},
-	{1.0f, 1.0f, 0.0f},
-
-	{0.0f, 0.0f, 0.0f},
-	{0.0f, 0.0f, 1.0f},
-	{1.0f, 0.0f, 1.0f},
-
-	{1.0f, 0.0f, 1.0f},
-	{1.0f, 0.0f, 0.0f},
-	{0.0f, 0.0f, 0.0f},
-
-	{0.0f, 0.0f, 1.0f},
-	{0.0f, 0.0f, 0.0f},
-	{0.0f, 1.0f, 0.0f},
-
-	{0.0f, 1.0f, 0.0f},
-	{0.0f, 1.0f, 1.0f},
-	{0.0f, 0.0f, 1.0f}
-};
-
-Vertex HelloGL::indexedVertices[] = {
-	{ 1.0f,  1.0f,  1.0f},   // 0
-	{-1.0f,  1.0f,  1.0f},   // 1
-	{-1.0f, -1.0f,  1.0f},   // 2
-	{ 1.0f, -1.0f,  1.0f},   // 3
-	{ 1.0f, -1.0f, -1.0f},   // 4
-	{ 1.0f,  1.0f, -1.0f},   // 5
-	{-1.0f,  1.0f, -1.0f},   // 6
-	{-1.0f, -1.0f, -1.0f}    // 7
-};
-
-Color HelloGL::indexedColors[] = {
-	{1.0f, 1.0f, 1.0f}, // v0
-	{1.0f, 1.0f, 0.0f}, // v1
-	{1.0f, 0.0f, 0.0f}, // v2
-	{1.0f, 0.0f, 1.0f}, // v3
-	{0.0f, 0.0f, 1.0f}, // v4
-	{0.0f, 1.0f, 1.0f}, // v5
-	{0.0f, 1.0f, 0.0f}, // v6
-	{0.0f, 0.0f, 0.0f}  // v7
-};
-
-GLushort HelloGL::indices[] = {
-	0,1,2,  2,3,0,   // front
-	0,3,4,  4,5,0,   // right
-	0,5,6,  6,1,0,   // top
-	1,6,7,  7,2,1,   // left
-	7,4,3,  3,2,7,   // back
-	4,7,6,  6,5,4    // bottom
-};
-
 HelloGL::HelloGL(int argc, char* argv[])
 {
 	rotation1 = 0.0f;
@@ -143,16 +11,19 @@ HelloGL::HelloGL(int argc, char* argv[])
 	camera->center.x = 0.0f; camera->center.y = 0.0f; camera->center.z = 0.0f;
 	camera->up.x = 0.0f; camera->up.y = 1.0f; camera->up.z = 0.0f;
 
+	cube = new Cube();
+
 	GLUTCallbacks::Init(this);
 
 	// init glut stuff
-	glutInitDisplayMode(GLUT_DOUBLE);
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH);
 	glutInit(&argc, argv);
 	glutInitWindowSize(800, 800);
 	glutInitWindowPosition(200, 100);
 	glutCreateWindow("Open GL Resub 1");
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_BACK);
+	glEnable(GL_DEPTH_TEST);
 
 	// other setup bits before main loop
 	glutDisplayFunc(GLUTCallbacks::Display);
@@ -164,7 +35,7 @@ HelloGL::HelloGL(int argc, char* argv[])
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glViewport(0, 0, 800, 800);
-	gluPerspective(45, 1, 0, 1000);
+	gluPerspective(45, 1, 1, 1000);
 	glMatrixMode(GL_MODELVIEW);
 
 	glutMainLoop();
@@ -172,275 +43,13 @@ HelloGL::HelloGL(int argc, char* argv[])
 
 void HelloGL::Display()
 {
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	//DrawPolygon();
 
-	glTranslatef(0.0f, 0.0f, -5.0f);
-	glRotatef(rotation1, 1.0f, 0.0f, 0.0f);
-	glRotatef(rotation2, 0.0f, 1.0f, 0.0f);
-	glRotatef(rotation3, 0.0f, 0.0f, 1.0f);
-
-	//DrawCube();
-	//glutWireTeapot(1.0f);
-	//DrawCubeArray();
-	DrawIndexedCube();
+	cube->Draw();
 
 	glFlush();
 	glutSwapBuffers();
-}
-
-void HelloGL::DrawCube()
-{
-	glBegin(GL_TRIANGLES);
-	// face v0-v1-v2
-	glColor3f(1, 1, 1);
-	glVertex3f(1, 1, 1);
-	glColor3f(1, 1, 0);
-	glVertex3f(-1, 1, 1);
-	glColor3f(1, 0, 0);
-	glVertex3f(-1, -1, 1);
-	// face v2-v3-v0
-	glColor3f(1, 0, 0);
-	glVertex3f(-1, -1, 1);
-	glColor3f(1, 0, 1);
-	glVertex3f(1, -1, 1);
-	glColor3f(1, 1, 1);
-	glVertex3f(1, 1, 1);
-	// face v0-v3-v4
-	glColor3f(1, 1, 1);
-	glVertex3f(1, 1, 1);
-	glColor3f(1, 0, 1);
-	glVertex3f(1, -1, 1);
-	glColor3f(0, 0, 1);
-	glVertex3f(1, -1, -1);
-	// face v4-v5-v0
-	glColor3f(0, 0, 1);
-	glVertex3f(1, -1, -1);
-	glColor3f(0, 1, 1);
-	glVertex3f(1, 1, -1);
-	glColor3f(1, 1, 1);
-	glVertex3f(1, 1, 1);
-	// face v0-v5-v6 
-	glColor3f(1, 1, 1);
-	glVertex3f(1, 1, 1);
-	glColor3f(0, 1, 1);
-	glVertex3f(1, 1, -1);
-	glColor3f(0, 1, 0);
-	glVertex3f(-1, 1, -1);
-	// face v6-v1-v0 
-	glColor3f(0, 1, 0);
-	glVertex3f(-1, 1, -1);
-	glColor3f(1, 1, 0);
-	glVertex3f(-1, 1, 1);
-	glColor3f(1, 1, 1);
-	glVertex3f(1, 1, 1);
-	// face  v1-v6-v7 
-	glColor3f(1, 1, 0);
-	glVertex3f(-1, 1, 1);
-	glColor3f(0, 1, 0);
-	glVertex3f(-1, 1, -1);
-	glColor3f(0, 0, 0);
-	glVertex3f(-1, -1, -1);
-	// face v7-v2-v1 
-	glColor3f(0, 0, 0);
-	glVertex3f(-1, -1, -1);
-	glColor3f(1, 0, 0);
-	glVertex3f(-1, -1, 1);
-	glColor3f(1, 1, 0);
-	glVertex3f(-1, 1, 1);
-	// face v7-v4-v3 
-	glColor3f(0, 0, 0);
-	glVertex3f(-1, -1, -1);
-	glColor3f(0, 0, 1);
-	glVertex3f(1, -1, -1);
-	glColor3f(1, 0, 1);
-	glVertex3f(1, -1, 1);
-	// face v3-v2-v7 
-	glColor3f(1, 0, 1);
-	glVertex3f(1, -1, 1);
-	glColor3f(1, 0, 0);
-	glVertex3f(-1, -1, 1);
-	glColor3f(0, 0, 0);
-	glVertex3f(-1, -1, -1);
-	// face v4-v7-v6 
-	glColor3f(0, 0, 1);
-	glVertex3f(1, -1, -1);
-	glColor3f(0, 0, 0);
-	glVertex3f(-1, -1, -1);
-	glColor3f(0, 1, 0);
-	glVertex3f(-1, 1, -1);
-	// face v6-v5-v4 
-	glColor3f(0, 1, 0);
-	glVertex3f(-1, 1, -1);
-	glColor3f(0, 1, 1);
-	glVertex3f(1, 1, -1);
-	glColor3f(0, 0, 1);
-	glVertex3f(1, -1, -1);
-	glEnd();
-}
-
-void HelloGL::DrawCubeArray()
-{
-	glPushMatrix();
-	glBegin(GL_TRIANGLES);
-	for (int i = 0; i < 36; i++)
-	{
-		glColor3fv(&colors[i].r);
-		glVertex3fv(&vertices[i].x);
-	}
-	glEnd();
-	glPopMatrix();
-}
-
-void HelloGL::DrawIndexedCube()
-{
-	glPushMatrix();
-	glBegin(GL_TRIANGLES);
-	for (int i = 0; i < 36; i++)
-	{
-		glColor3fv(&indexedColors[indices[i]].r);
-		glVertex3fv(&indexedVertices[indices[i]].x);
-	}
-	glEnd();
-	glPopMatrix();
-}
-
-void HelloGL::DrawPolygon()
-{
-	// Self notes
-	// first number is X so left right
-	// second number is Y so up down
-	//so 1, 1 is top right corner
-	// and -1, -1 is bottom left corner
-
-	// Scalene triangle
-
-	glPushMatrix();
-	glTranslatef(0.833f, 0.9f, -5.0f); // Move the pivot to the origin
-	glRotatef(rotation1, 0.0f, 0.0f, 1.0f); // Rotate about the origin
-	glTranslatef(-0.833f, -0.9f, -5.0f); // Move back
-
-	glBegin(GL_TRIANGLES);
-	{
-		glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
-		glVertex2f(0.9f, 1.0f);
-		glVertex2f(1.0f, 0.85f);
-		glVertex2f(0.6f, 0.85f);
-		glEnd();
-	}
-	glPopMatrix();
-
-	// Isosceles triangle
-
-	glPushMatrix();
-	glTranslatef(-0.8f, 0.6667f, -5.0f); // Move the pivot to the origin
-	glRotatef(rotation1, 0.0f, 0.0f, 1.0f); // Rotate about the origin
-	glTranslatef(0.8f, -0.6667f, -5.0f); // Move back
-
-	glBegin(GL_TRIANGLES);
-	{
-		glColor4f(0.0f, 1.0f, 0.0f, 1.0f);
-		glVertex2f(-0.8f, 1.0f);
-		glVertex2f(-1.0f, 0.5f);
-		glVertex2f(-0.6f, 0.5f);
-		glEnd();
-	}
-	glPopMatrix();
-
-	// Equilateral triangle
-
-	glPushMatrix();
-	glTranslatef(0.8f, 0.0833f, -5.0f); // Move the pivot to the origin
-	glRotatef(rotation2, 0.0f, 0.0f, 1.0f); // Rotate about the origin
-	glTranslatef(-0.8f, -0.0833f, -5.0f); // Move back
-
-	glBegin(GL_TRIANGLES);
-	{
-		glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
-		glVertex2f(0.8f, 0.25f);
-		glVertex2f(1.0f, 0.0f);
-		glVertex2f(0.6f, 0.0f);
-		glEnd();
-	}
-
-	glPopMatrix();
-
-	// Acute triangle
-
-	glPushMatrix();
-	glTranslatef(-0.8333f, -0.0833f, -5.0f);
-	glRotatef(rotation3, 0.0f, 0.0f, 1.0f);
-	glTranslatef(0.8333f, 0.0833f, -5.0f);
-
-	glBegin(GL_TRIANGLES);
-	{
-		glColor4f(1.0f, 1.0f, 0.0f, 1.0f);
-		glVertex2f(-0.9f, 0.25f);
-		glVertex2f(-1.0f, -0.25f);
-		glVertex2f(-0.6f, -0.25f);
-		glEnd();
-	}
-
-	glPopMatrix();
-
-	// Right triangle
-
-	glPushMatrix();
-	glTranslatef(0.0833f, 0.0833f, -5.0f);
-	glRotatef(rotation2, 0.0f, 0.0f, 1.0f);
-	glTranslatef(-0.0833f, -0.0833f, -5.0f);
-
-	glBegin(GL_TRIANGLES);
-	{
-		glColor4f(0.0f, 1.0f, 1.0f, 1.0f);
-		glVertex2f(0.0f, 0.25f);
-		glVertex2f(0.0f, 0.0f);
-		glVertex2f(0.25f, 0.0f);
-		glEnd();
-	}
-
-	glPopMatrix();
-
-	// Obtuse triangle
-
-	glPushMatrix();
-	glTranslatef(0.0833f, -0.4167f, -5.0f);
-	glRotatef(rotation2, 0.0f, 0.0f, 1.0f);
-	glTranslatef(-0.0833f, 0.4167f, -5.0f);
-
-	glBegin(GL_TRIANGLES);
-	{
-		glColor4f(1.0f, 0.0f, 1.0f, 1.0f);
-		glVertex2f(-0.25f, -0.25f);
-		glVertex2f(0.0f, -0.5f);
-		glVertex2f(0.5f, -0.5f);
-		glEnd();
-	}
-
-	glPopMatrix();
-
-	// Hexagon
-
-	glPushMatrix();
-	glTranslatef(-0.6f, -0.65f, -5.0f);
-	glRotatef(rotation1, 0.0f, 0.0f, 1.0f);
-	glTranslatef(0.6f, 0.65f, -5.0f);
-
-	glBegin(GL_POLYGON);
-	{
-		glColor4f(0.5f, 0.75f, 0.5f, 1.0f);
-		glVertex2f(-0.75f, -0.5f);
-		glVertex2f(-0.45f, -0.5f);
-		glVertex2f(-0.35f, -0.6f);
-		glVertex2f(-0.35f, -0.7f);
-		glVertex2f(-0.45f, -0.8f);
-		glVertex2f(-0.75f, -0.8f);
-		glVertex2f(-0.85f, -0.7f);
-		glVertex2f(-0.85f, -0.6f);
-		glEnd();
-	}
-
-	glPopMatrix();
 }
 
 void HelloGL::Keyboard(unsigned char key, int x, int y)
@@ -492,6 +101,7 @@ void HelloGL::Update()
 	gluLookAt(camera->eye.x, camera->eye.y, camera->eye.z,
 		camera->center.x, camera->center.y, camera->center.z,
 		camera->up.x, camera->up.y, camera->up.z);
+	cube->Update();
 	// FPS testing
 	//Sleep(10);
 
