@@ -52,7 +52,7 @@ struct Mesh
 {
 	Vertex* Vertices;
 	TexCoord* TexCoords;
-	Color* Colors;
+	Vector3* Normals;
 	GLushort* Indices;
-	int VertexCount, TexCoordCount, ColorCount, IndexCount;
+	int VertexCount, TexCoordCount, NormalCount, IndexCount;
 };

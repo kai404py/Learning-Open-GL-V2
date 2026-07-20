@@ -26,11 +26,11 @@ Mesh* MeshLoader::Load(char* path)
 		inFile >> mesh->TexCoords[i].u >> mesh->TexCoords[i].v;
 	}
 
-	inFile >> mesh->ColorCount;
-	mesh->Colors = new Color[mesh->ColorCount];
-	for (int i = 0; i < mesh->ColorCount; i++)
+	inFile >> mesh->NormalCount;
+	mesh->Normals = new Vector3[mesh->NormalCount];
+	for (int i = 0; i < mesh->NormalCount; i++)
 	{
-		inFile >> mesh->Colors[i].r >> mesh->Colors[i].g >> mesh->Colors[i].b;
+		inFile >> mesh->Normals[i].x >> mesh->Normals[i].y >> mesh->Normals[i].z;
 	}
 
 	inFile >> mesh->IndexCount;

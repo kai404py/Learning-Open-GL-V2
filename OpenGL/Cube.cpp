@@ -33,7 +33,7 @@ void Cube::Draw()
 
 	if (_mesh != nullptr &&
 		_mesh->Vertices != nullptr &&
-		_mesh->Colors != nullptr &&
+		_mesh->Normals != nullptr &&
 		_mesh->Indices != nullptr)
 	{
 		if (_texture != nullptr)
@@ -42,10 +42,10 @@ void Cube::Draw()
 		}
 
 		glEnableClientState(GL_VERTEX_ARRAY);
-		glEnableClientState(GL_COLOR_ARRAY);
+		glEnableClientState(GL_NORMAL_ARRAY);
 
 		glVertexPointer(3, GL_FLOAT, 0, _mesh->Vertices);
-		glColorPointer(3, GL_FLOAT, 0, _mesh->Colors);
+		glNormalPointer(GL_FLOAT, 0, _mesh->Normals);
 
 		if (_mesh->TexCoords != nullptr)
 		{
@@ -59,7 +59,7 @@ void Cube::Draw()
 		{
 			glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 		}
-		glDisableClientState(GL_COLOR_ARRAY);
+		glDisableClientState(GL_NORMAL_ARRAY);
 		glDisableClientState(GL_VERTEX_ARRAY);
 	}
 	glPopMatrix();
