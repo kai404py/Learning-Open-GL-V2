@@ -12,7 +12,7 @@ void HelloGL::InitObjects()
 	Texture2D* texture = new Texture2D();
 	if (!texture->Load((char*)"Penguins.raw", 512, 512))
 	{
-		cout << "Failed to load texture" << endl;
+		std::cout << "Failed to load texture" << std::endl;
 		delete texture;
 		texture = nullptr;
 	}
