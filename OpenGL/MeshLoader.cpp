@@ -19,6 +19,13 @@ Mesh* MeshLoader::Load(char* path)
 		inFile >> mesh->Vertices[i].x >> mesh->Vertices[i].y >> mesh->Vertices[i].z;
 	}
 
+	inFile >> mesh->TexCoordCount;
+	mesh->TexCoords = new TexCoord[mesh->TexCoordCount];
+	for (int i = 0; i < mesh->TexCoordCount; i++)
+	{
+		inFile >> mesh->TexCoords[i].u >> mesh->TexCoords[i].v;
+	}
+
 	inFile >> mesh->ColorCount;
 	mesh->Colors = new Color[mesh->ColorCount];
 	for (int i = 0; i < mesh->ColorCount; i++)
