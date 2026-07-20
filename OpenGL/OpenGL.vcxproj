@@ -125,6 +125,7 @@
   <ItemGroup>
     <ClInclude Include="GLUTCallbacks.h" />
     <ClInclude Include="HelloGL.h" />
+    <ClInclude Include="Structures.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GLUTCallbacks.cpp" />

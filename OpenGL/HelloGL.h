@@ -5,18 +5,8 @@
 #include "GL/freeglut.h"
 #include "GLUTCallbacks.h"
 
-#define REFRESHRATE 16
-struct Vector3
-{
-	float x, y, z;
-};
-
-struct Camera
-{
-	Vector3 eye;
-	Vector3 center;
-	Vector3 up;
-};
+#define REFRESHRATE 2
+#include "Structures.h"
 
 class HelloGL
 {
@@ -27,7 +17,9 @@ public:
 	void Update();
 	void Keyboard(unsigned char key, int x, int y);
 	void SpecialKeyboard(int key, int x, int y);
-	void DrawCamera();
+	void DrawCube();
+	void DrawCubeArray();
+	void DrawIndexedCube();
 
 	~HelloGL(void);
 
@@ -36,4 +28,5 @@ private:
 	float rotation2;
 	float rotation3;
 	Camera* camera;
+
 };

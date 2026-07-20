@@ -19,6 +19,8 @@ HelloGL::HelloGL(int argc, char* argv[])
 	glutInitWindowSize(800, 800);
 	glutInitWindowPosition(200, 100);
 	glutCreateWindow("Open GL Resub 1");
+	glEnable(GL_CULL_FACE);
+	glEnable(GL_BACK);
 
 	// other setup bits before main loop
 	glutDisplayFunc(GLUTCallbacks::Display);
@@ -42,9 +44,14 @@ void HelloGL::Display()
 	//DrawPolygon();
 
 	glTranslatef(0.0f, 0.0f, -5.0f);
-	glRotatef(rotation1, 1.0f, 1.0f, 0.0f);
+	glRotatef(rotation1, 1.0f, 0.0f, 0.0f);
+	glRotatef(rotation2, 0.0f, 1.0f, 0.0f);
+	glRotatef(rotation3, 0.0f, 0.0f, 1.0f);
 
-	glutWireTeapot(1.0f);
+	//DrawCube();
+	//glutWireTeapot(1.0f);
+	//DrawCubeArray();
+	DrawIndexedCube();
 
 	glFlush();
 	glutSwapBuffers();
@@ -81,6 +88,89 @@ void HelloGL::DrawCube()
 		glVertex3f(1, 1, -1);
 		glColor3f(1, 1, 1);
 		glVertex3f(1, 1, 1);
+		// face v0-v5-v6 
+		glColor3f(1, 1, 1);
+		glVertex3f(1, 1, 1);
+		glColor3f(0, 1, 1);
+		glVertex3f(1, 1, -1);
+		glColor3f(0, 1, 0);
+		glVertex3f(-1, 1, -1);
+		// face v6-v1-v0 
+		glColor3f(0, 1, 0);
+		glVertex3f(-1, 1, -1);
+		glColor3f(1, 1, 0);
+		glVertex3f(-1, 1, 1);
+		glColor3f(1, 1, 1);
+		glVertex3f(1, 1, 1);
+		// face  v1-v6-v7 
+		glColor3f(1, 1, 0);
+		glVertex3f(-1, 1, 1);
+		glColor3f(0, 1, 0);
+		glVertex3f(-1, 1, -1);
+		glColor3f(0, 0, 0);
+		glVertex3f(-1, -1, -1);
+		// face v7-v2-v1 
+		glColor3f(0, 0, 0);
+		glVertex3f(-1, -1, -1);
+		glColor3f(1, 0, 0);
+		glVertex3f(-1, -1, 1);
+		glColor3f(1, 1, 0);
+		glVertex3f(-1, 1, 1);
+		// face v7-v4-v3 
+		glColor3f(0, 0, 0);
+		glVertex3f(-1, -1, -1);
+		glColor3f(0, 0, 1);
+		glVertex3f(1, -1, -1);
+		glColor3f(1, 0, 1);
+		glVertex3f(1, -1, 1);
+		// face v3-v2-v7 
+		glColor3f(1, 0, 1);
+		glVertex3f(1, -1, 1);
+		glColor3f(1, 0, 0);
+		glVertex3f(-1, -1, 1);
+		glColor3f(0, 0, 0);
+		glVertex3f(-1, -1, -1);
+		// face v4-v7-v6 
+		glColor3f(0, 0, 1);
+		glVertex3f(1, -1, -1);
+		glColor3f(0, 0, 0);
+		glVertex3f(-1, -1, -1);
+		glColor3f(0, 1, 0);
+		glVertex3f(-1, 1, -1);
+		// face v6-v5-v4 
+		glColor3f(0, 1, 0);
+		glVertex3f(-1, 1, -1);
+		glColor3f(0, 1, 1);
+		glVertex3f(1, 1, -1);
+		glColor3f(0, 0, 1);
+		glVertex3f(1, -1, -1);
+	glEnd();
+}
+
+void HelloGL::DrawCubeArray() 
+{
+	glPushMatrix();
+	glBegin(GL_TRIANGLES);
+	for (int i = 0; i < 36; i++) 
+		{
+			glColor3fv(&colors[i].r);
+			glVertex3fv(&vertices[i].x);
+		}
+	glEnd();
+	glPopMatrix();
+}
+
+void HelloGL::DrawIndexedCube()
+{
+	glPushMatrix();
+	glBegin(GL_TRIANGLES);
+	for (int i = 0; i < 36; i++)
+	{
+		glColor3fv(&indexedColors[indices[i]].r);
+		glVertex3fv(&indexedVertices[indices[i]].x);
+	}
+	glEnd();
+	glPopMatrix();
 }
 
 void HelloGL::DrawPolygon()
@@ -231,52 +321,36 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 	{
 		camera->eye.z += 0.1f;
 	}
-	if (key == 'a')
-	{
-		camera->eye.x -= 0.1f;
-	}
-	if (key == 'd')
-	{
-		camera->eye.x += 0.1f;
-	}
-	if (key == 'i')
-	{
-		camera->up.z -= 0.1f;
-	}
-	if (key == 'k')
-	{
-		camera->up.z += 0.1f;
-	}
-	if (key == 'j')
-	{
-		camera->up.x -= 0.1f;
-	}
-	if (key == 'l')
-	{
-		camera->up.x += 0.1f;
-	}
+	//if (key == 'a')
+	//{
+	//	rotation1 -= 0.5f;
+	//}
+	//if (key == 'd')
+	//{
+	//	rotation1 += 0.5f;
+	//}
 }
 
 void HelloGL::SpecialKeyboard(int key, int x, int y)
 {
 	if (key == GLUT_KEY_UP)
 	{
-		camera->center.y -= 0.1f;
+		rotation1 -= 1.0f;
 	}
 
 	if (key == GLUT_KEY_DOWN)
 	{
-		camera->center.y += 0.1f;
+		rotation1 += 1.0f;
 	}
 
 	if (key == GLUT_KEY_LEFT)
 	{
-		camera->center.x += 0.1f;
+		rotation2 += 1.0f;
 	}
 
 	if (key == GLUT_KEY_RIGHT)
 	{
-		camera->center.x -= 0.1f;
+		rotation2 -= 1.0f;
 	}
 }
 
@@ -296,15 +370,15 @@ void HelloGL::Update()
 	//if (rotation1 >= 360.0f)
 	//	rotation1 = 0.0f;
 
-	rotation2 += 1.5f;
-
-	if (rotation2 >= 360.0f)
-		rotation2 = 0.0f;
-
-	rotation3 -= 0.5f;
-
-	if (rotation3 <= -360.0f)
-		rotation3 = 0.0f;
+	//rotation2 += 1.5f;
+	//
+	//if (rotation2 >= 360.0f)
+	//	rotation2 = 0.0f;
+	//
+	//rotation3 -= 0.5f;
+	//
+	//if (rotation3 <= -360.0f)
+	//	rotation3 = 0.0f;
 
 	glutPostRedisplay();
 }
