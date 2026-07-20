@@ -8,7 +8,7 @@ void HelloGL::InitObjects()
 	Mesh* cubeMesh = MeshLoader::Load((char*)"cube.txt");
 	Mesh* pyramidMesh = MeshLoader::Load((char*)"pyramid.txt");
 
-	for (int i = 0; i < 500; i++)
+	for (int i = 0; i < 100; i++)
 	{
 		objects[i] = new Cube(cubeMesh,
 			((rand() % 400) / 10.0f) - 20.0f,
@@ -16,7 +16,7 @@ void HelloGL::InitObjects()
 			-(rand() % 1000) / 10.0f);
 	}
 
-	for (int i = 500; i < 1000; i++)
+	for (int i = 100; i < 200; i++)
 	{
 		objects[i] = new Pyramid(pyramidMesh,
 			((rand() % 400) / 10.0f) - 20.0f,
