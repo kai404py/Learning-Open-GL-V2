@@ -5,6 +5,7 @@
 #include "SceneObject.h"
 #include "Cube.h"
 #include "Pyramid.h"
+#include "Texture2D.h"
 #include <cmath>
 
 #define REFRESHRATE 2

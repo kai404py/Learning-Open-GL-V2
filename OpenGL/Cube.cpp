@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include "Cube.h"
 
-Cube::Cube(Mesh* mesh, float x, float y, float z) : SceneObject(mesh)
+Cube::Cube(Mesh* mesh, Texture2D* texture, float x, float y, float z) : SceneObject(mesh, texture)
 {
 	_position.x = x;
 	_position.y = y;
@@ -26,6 +26,13 @@ Cube::Cube(Mesh* mesh, float x, float y, float z) : SceneObject(mesh)
 
 void Cube::Draw()
 {
+	if (_texture != nullptr)
+	{
+		glBindTexture(GL_TEXTURE_2D, _texture->GetID());
+	}
+
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
 	glPushMatrix();
 
 	glTranslatef(_position.x, _position.y, _position.z);
@@ -36,17 +43,21 @@ void Cube::Draw()
 		_mesh->Colors != nullptr &&
 		_mesh->Indices != nullptr)
 	{
+		glColorPointer(3, GL_FLOAT, 0, _mesh->Colors);
+		glTexCoordPointer(2, GL_FLOAT, 0, _mesh->TexCoords);
+
 		glBegin(GL_TRIANGLES);
 
 		for (int i = 0; i < _mesh->IndexCount; i++)
 		{
-			glColor3fv(&_mesh->Colors[_mesh->Indices[i]].r);
-			glVertex3fv(&_mesh->Vertices[_mesh->Indices[i]].x);
+			glArrayElement(_mesh->Indices[i]);
 		}
 
 		glEnd();
 	}
 	glPopMatrix();
+
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 }
 
 void Cube::Update()

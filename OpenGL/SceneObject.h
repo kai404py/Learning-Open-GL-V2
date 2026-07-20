@@ -1,14 +1,16 @@
 #pragma once
 #include "GL/freeglut.h"
 #include "Structures.h"
+#include "Texture2D.h"
 
 class SceneObject
 {
 protected:
 	Mesh* _mesh;
+	Texture2D* _texture;
 
 public:
-	SceneObject(Mesh* mesh);
+	SceneObject(Mesh* mesh, Texture2D* texture);
 	virtual ~SceneObject();
 
 	virtual void Update();

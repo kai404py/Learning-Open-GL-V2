@@ -8,9 +8,12 @@ void HelloGL::InitObjects()
 	Mesh* cubeMesh = MeshLoader::Load((char*)"cube.txt");
 	Mesh* pyramidMesh = MeshLoader::Load((char*)"pyramid.txt");
 
+	Texture2D* texture = new Texture2D();
+	texture->Load((char*)"penguins.raw", 512, 512);
+
 	for (int i = 0; i < 500; i++)
 	{
-		objects[i] = new Cube(cubeMesh,
+		objects[i] = new Cube(cubeMesh, texture,
 			((rand() % 400) / 10.0f) - 20.0f,
 			((rand() % 200) / 10.0f) - 10.0f,
 			-(rand() % 1000) / 10.0f);
@@ -18,7 +21,7 @@ void HelloGL::InitObjects()
 
 	for (int i = 500; i < 1000; i++)
 	{
-		objects[i] = new Pyramid(pyramidMesh,
+		objects[i] = new Pyramid(pyramidMesh, nullptr,
 			((rand() % 400) / 10.0f) - 20.0f,
 			((rand() % 200) / 10.0f) - 10.0f,
 			-(rand() % 1000) / 10.0f);
@@ -58,8 +61,9 @@ void HelloGL::InitGL(int argc, char* argv[])
 	glutInitWindowSize(800, 800);
 	glutInitWindowPosition(200, 100);
 	glutCreateWindow("Open GL Resub 1");
+	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_CULL_FACE);
-	glEnable(GL_BACK);
+	glCullFace(GL_BACK);
 	glEnable(GL_DEPTH_TEST);
 
 	// other setup bits before main loop
