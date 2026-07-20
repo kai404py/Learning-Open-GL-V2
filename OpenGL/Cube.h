@@ -10,11 +10,6 @@
 class Cube
 {
 private:
-	static Vertex* indexedVertices;
-	static Color* indexedColors;
-	static GLushort* indices;
-	static int numVertices, numColors, numIndices;
-
 	Mesh* _mesh;
 	Vector3 _position;
 
@@ -29,8 +24,6 @@ private:
 public:
 	Cube(Mesh* mesh, float x, float y, float z);
 	~Cube();
-	
-	static bool Load(char* path);
 
 	void Draw();
 	void Update();

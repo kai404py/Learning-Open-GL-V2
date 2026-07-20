@@ -1,8 +1,9 @@
 #include "HelloGL.h"
+#include "MeshLoader.h"
 
 void HelloGL::InitObjects()
 {
-	Cube::Load((char*)"cube.txt");
+	Mesh* cubeMesh = MeshLoader::Load((char*)"cube.txt");
 	OBJ::Load((char*)"teapot.obj");
 
 	for (int i = 0; i < 20; i++)
@@ -13,7 +14,7 @@ void HelloGL::InitObjects()
 
 		if (i % 2 == 0)
 		{
-			cube[i] = new Cube(x, y, z);
+			cube[i] = new Cube(cubeMesh, x, y, z);
 		}
 		else
 		{
@@ -75,6 +76,8 @@ void HelloGL::InitGL(int argc, char* argv[])
 
 HelloGL::HelloGL(int argc, char* argv[])
 {
+	srand(time(NULL));
+
 	InitGL(argc, argv);
 	InitObjects();
 

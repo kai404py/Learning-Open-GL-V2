@@ -35,6 +35,6 @@ private:
 	float rotation2;
 	float rotation3;
 	Camera* camera;
-	Cube* cube[200] = {};`
+	Cube* cube[200] = {};
 	OBJ* obj[200] = {};
 };

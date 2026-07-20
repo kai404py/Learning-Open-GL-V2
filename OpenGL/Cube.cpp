@@ -1,18 +1,9 @@
 #include "Cube.h"
 
-
-// Definitions for static members declared in Cube.h
-
-Vertex* Cube::indexedVertices = nullptr;
-Color* Cube::indexedColors = nullptr;
-GLushort* Cube::indices = nullptr;
-
-int Cube::numColors = 0;
-int Cube::numVertices = 0;
-int Cube::numIndices = 0;
-
-Cube::Cube(float x, float y, float z)
+Cube::Cube(Mesh* mesh, float x, float y, float z)
 {
+	_mesh = mesh;
+
 	_position.x = x;
 	_position.y = y;
 	_position.z = z;
@@ -40,57 +31,23 @@ void Cube::Draw()
 
 	glTranslatef(_position.x, _position.y, _position.z);
 	glRotatef(_rotation, _axisX, _axisY, _axisZ);
-	
-	if (indexedVertices != nullptr &&
-		indexedColors != nullptr &&
-		indices != nullptr)
+
+	if (_mesh != nullptr &&
+		_mesh->Vertices != nullptr &&
+		_mesh->Colors != nullptr &&
+		_mesh->Indices != nullptr)
 	{
 		glBegin(GL_TRIANGLES);
 
-		for (int i = 0; i < numIndices; i++)
+		for (int i = 0; i < _mesh->IndexCount; i++)
 		{
-			glColor3fv(&indexedColors[indices[i]].r);
-			glVertex3fv(&indexedVertices[indices[i]].x);
+			glColor3fv(&_mesh->Colors[_mesh->Indices[i]].r);
+			glVertex3fv(&_mesh->Vertices[_mesh->Indices[i]].x);
 		}
 
 		glEnd();
 	}
 	glPopMatrix();
-}
-
-bool Cube::Load(char* path)
-{
-	std::ifstream inFile;
-	inFile.open(path);
-	if (!inFile.good())
-	{
-		std::cerr << "Can't open text file " << path << std::endl;
-		return false;
-	}
-	inFile >> numVertices;
-	indexedVertices = new Vertex[numVertices];
-	for (int i = 0; i < numVertices; i++)
-	{
-		//TODO Use inFile to populate the indexedVertices array 
-		inFile >> indexedVertices[i].x >> indexedVertices[i].y >> indexedVertices[i].z;
-	}
-
-	inFile >> numColors;
-	indexedColors = new Color[numColors];
-	for (int i = 0; i < numColors; i++)
-	{
-		inFile >> indexedColors[i].r >> indexedColors[i].g >> indexedColors[i].b;
-	}
-
-	inFile >> numIndices;
-	indices = new GLushort[numIndices];
-	for (int i = 0; i < numIndices; i++)
-	{
-		inFile >> indices[i];
-	}
-	
-	inFile.close();
-	return true;
 }
 
 void Cube::Update()
